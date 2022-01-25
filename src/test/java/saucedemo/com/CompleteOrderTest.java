@@ -1,7 +1,6 @@
 package saucedemo.com;
 
-import Pages.LoginPage;
-import Pages.MainPage;
+import Pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,11 +11,15 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTest {
+public class CompleteOrderTest {
 
-     WebDriver driver;
+    WebDriver driver;
     private LoginPage loginPage;
     private MainPage mainPage;
+    private CartPage cartPage;
+    private CheckoutFormPage checkoutFormPage;
+    private OverviewPage overviewPage;
+    private OrderCompletePage orderCompletePage;
 
     @BeforeClass
     public void setup() {
@@ -46,6 +49,46 @@ public class LoginTest {
         mainPage = new MainPage(driver);
 
         Assert.assertTrue(mainPage.siteLabel().isDisplayed());
+    }
+
+    @Test
+    public void addToCardOneItemTest() {
+
+        mainPage.addCartBackpackBtn().click();
+        mainPage.cartBtn().click();
+
+        cartPage = new CartPage(driver);
+        Assert.assertTrue(cartPage.cartLabel().isDisplayed());
+
+    }
+
+    @Test
+    public void checkoutTest() {
+
+        cartPage = new CartPage(driver);
+        cartPage.checkoutBtn().click();
+
+        checkoutFormPage = new CheckoutFormPage(driver);
+
+        checkoutFormPage.firstNameInput().sendKeys("Jan");
+        checkoutFormPage.lastNameInput().sendKeys("Nowak");
+        checkoutFormPage.postalCodeInput().sendKeys("00-001");
+        checkoutFormPage.continueBtn().click();
+
+        overviewPage = new OverviewPage(driver);
+        Assert.assertTrue(overviewPage.overviewLabel().isDisplayed());
+    }
+
+    @Test
+    public void completeOrderTest() {
+
+        overviewPage = new OverviewPage(driver);
+        overviewPage.finishBtn().click();
+
+        orderCompletePage = new OrderCompletePage(driver);
+
+        Assert.assertEquals(orderCompletePage.completeOrderText().getText(), "THANK YOU FOR YOUR ORDER");
+
     }
 
     @AfterClass
