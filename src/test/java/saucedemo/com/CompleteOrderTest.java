@@ -1,6 +1,7 @@
 package saucedemo.com;
 
 import Pages.*;
+import base.BaseClass;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class CompleteOrderTest {
+public class CompleteOrderTest extends BaseClass {
 
     WebDriver driver;
     private LoginPage loginPage;
@@ -40,6 +41,11 @@ public class CompleteOrderTest {
 
     @Test
     public void loginTest() {
+        log.debug("Sample DEBUG message");
+        log.error("Sample ERROR message");
+        log.info("Sample INFO message");
+        log.warn("Sample WARN message");
+
         loginPage = new LoginPage(driver);
 
         loginPage.loginInput().sendKeys("standard_user");
