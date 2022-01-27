@@ -2,14 +2,24 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2"  name="C:/Users/emilk/OneDrive/Pulpit/Projekty/SausageDemoAutomation">
-        <classes><class name="saucedemo.com.CompleteOrderTest">
-            <methods>
-                <include name="loginTest"/>
-                <include name="addToCardOneItemTest"/>
-                <include name="checkoutTest"/>
-                <include name="completeOrderTest"/>
-            </methods>
-        </class>
+        <classes>
+            <class name="saucedemo.com.CompleteOrderTest">
+                <methods>
+                    <include name="loginTest"/>
+                    <include name="addToCardOneItemTest"/>
+                    <include name="checkoutTest"/>
+                    <include name="completeOrderTest"/>
+                </methods>
+            </class>
+            <class name="saucedemo.com.AddAllItemToCardAndCompleteOrder">
+                <methods>
+                    <include name="loginTest"/>
+                    <include name="addToCardOneItemTest"/>
+                    <include name="checkoutTest"/>
+                    <include name="completeOrderTest"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>
