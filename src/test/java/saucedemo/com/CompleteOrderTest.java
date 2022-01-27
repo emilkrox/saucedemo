@@ -77,8 +77,11 @@ public class CompleteOrderTest extends BaseClass {
         checkoutFormPage = new CheckoutFormPage(driver);
 
         checkoutFormPage.firstNameInput().sendKeys("Jan");
+        Assert.assertTrue(checkoutFormPage.firstNameInput().isDisplayed());
         checkoutFormPage.lastNameInput().sendKeys("Nowak");
+        Assert.assertTrue(checkoutFormPage.lastNameInput().isDisplayed());
         checkoutFormPage.postalCodeInput().sendKeys("00-001");
+        Assert.assertTrue(checkoutFormPage.continueBtn().isDisplayed());
         checkoutFormPage.continueBtn().click();
 
         overviewPage = new OverviewPage(driver);
